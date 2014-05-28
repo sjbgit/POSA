@@ -41,7 +41,8 @@ public class SimpleSemaphore {
     	mAvailablePermits = permits;
     	mRLock = new ReentrantLock(fair);
     	notEmpty = mRLock.newCondition();
-    	
+    	//look at this:
+    	//http://baptiste-wicht.com/posts/2010/09/java-concurrency-part-5-monitors-locks-and-conditions.html
     }
 
     /**
