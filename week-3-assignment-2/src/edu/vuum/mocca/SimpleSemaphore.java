@@ -3,6 +3,7 @@ package edu.vuum.mocca;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @class SimpleSemaphore
@@ -16,6 +17,7 @@ public class SimpleSemaphore {
      * Define a ReentrantLock to protect the critical section.
      */
     // TODO - you fill in here
+	private ReentrantReadWriteLock mRWLock = new ReentrantReadWriteLock();
 
     /**
      * Define a ConditionObject to wait while the number of
