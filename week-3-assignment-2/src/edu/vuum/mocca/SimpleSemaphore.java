@@ -52,12 +52,13 @@ public class SimpleSemaphore {
      */
     public void acquire() throws InterruptedException {
     	
+    	mRLock.lockInterruptibly();
     	while(mAvailablePermits == 0){
     		notEmpty.await();
     	}
     	
         // TODO - you fill in here.
-    	mRLock.lockInterruptibly();
+    	
     	mAvailablePermits -= 1;
     	mRLock.unlock();
     }
@@ -70,6 +71,9 @@ public class SimpleSemaphore {
     		
         // TODO - you fill in here.
     	mRLock.lock();
+    	while(mAvailablePermits == 0){
+    		notEmpty.awaitUninterruptibly();
+    	}
     	mAvailablePermits -= 1;
     	mRLock.unlock();
     }
@@ -82,8 +86,9 @@ public class SimpleSemaphore {
         // TODO - you fill in here.
     	mRLock.lock();
     	mAvailablePermits += 1;
+    	notEmpty.signal();
     	mRLock.unlock();
-    	//notEmpty.signalAll();
+    	
     	
     }
 
