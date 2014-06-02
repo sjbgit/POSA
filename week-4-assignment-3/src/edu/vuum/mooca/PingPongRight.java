@@ -52,7 +52,7 @@ public class PingPongRight {
                                   SimpleSemaphore semaphoreOne,
                                   SimpleSemaphore semaphoreTwo,
                                   int maxIterations) {
-            // TODO - You fill in here. tet
+            // TODO - You fill in here. 
         }
 
         /**
