@@ -72,10 +72,15 @@ public class PingPongRight {
              * implements the core ping/pong algorithm.
              */
 
+        	for (int loopsDone = 1; loopsDone <= mMaxIterations; ++loopsDone) {
+        		mSemas[FIRST_SEMA].acquireUninterruptibly();
+        		System.out.println(mStringToPrint + " " + loopsDone);
+        		mSemas[SECOND_SEMA].release();
+        	}
         	
         	
             // TODO - You fill in here.
-        	System.out.println(mStringToPrint);
+        	//System.out.println(mStringToPrint);
         	
         	mLatch.countDown();
         }
@@ -141,8 +146,11 @@ public class PingPongRight {
         // print and the appropriate SimpleSemaphores.
         
         //IS THIS CORRECT - PASSING IN DIFFERENT?
-        PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pongSema, maxIterations);
-        PlayPingPongThread pong = new PlayPingPongThread("pong", pongSema, pingSema, maxIterations);
+      
+        //THIS WORKS
+        //PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pongSema, maxIterations);
+        //PlayPingPongThread pong = new PlayPingPongThread("pong", pongSema, pingSema, maxIterations);
+      
 
         // TODO - Initiate the ping and pong threads, which will call
         // the run() hook method.
