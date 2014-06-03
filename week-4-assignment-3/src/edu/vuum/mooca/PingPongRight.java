@@ -72,7 +72,12 @@ public class PingPongRight {
              * implements the core ping/pong algorithm.
              */
 
+        	
+        	
             // TODO - You fill in here.
+        	System.out.println(mStringToPrint);
+        	
+        	mLatch.countDown();
         }
 
         /**
@@ -139,11 +144,14 @@ public class PingPongRight {
 
         // TODO - Initiate the ping and pong threads, which will call
         // the run() hook method.
+        ping.start();
+        pong.start();
 
         // TODO - replace the following line with a CountDownLatch
         // barrier synchronizer call that waits for both threads to
         // finish.
-        throw new java.lang.InterruptedException();
+        mLatch.await();
+        //throw new java.lang.InterruptedException();
 
         System.out.println(finishString);
     }
