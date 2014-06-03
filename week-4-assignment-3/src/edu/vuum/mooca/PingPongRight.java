@@ -74,7 +74,7 @@ public class PingPongRight {
 
         	for (int loopsDone = 1; loopsDone <= mMaxIterations; ++loopsDone) {
         		mSemas[FIRST_SEMA].acquireUninterruptibly();
-        		System.out.println(mStringToPrint + " " + loopsDone);
+        		System.out.println(mStringToPrint + "(" + loopsDone + ")");
         		mSemas[SECOND_SEMA].release();
         	}
         	
@@ -147,6 +147,8 @@ public class PingPongRight {
         
         //IS THIS CORRECT - PASSING IN DIFFERENT?
       
+        PlayPingPongThread ping = new PlayPingPongThread(pingString, pingSema, pongSema, maxIterations);
+        PlayPingPongThread pong = new PlayPingPongThread(pongString, pongSema, pingSema, maxIterations);
         //THIS WORKS
         //PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pongSema, maxIterations);
         //PlayPingPongThread pong = new PlayPingPongThread("pong", pongSema, pingSema, maxIterations);
