@@ -53,6 +53,12 @@ public class PingPongRight {
                                   SimpleSemaphore semaphoreTwo,
                                   int maxIterations) {
             // TODO - You fill in here. 
+        	mStringToPrint = stringToPrint;
+        	//mSemaphoreOne = semaphoreOne;
+        	//mSemaphoreTwo = semaphoreTwo;
+        	mSemas[FIRST_SEMA] = semaphoreOne;
+            mSemas[SECOND_SEMA] = semaphoreTwo;
+        	mMaxLoopIterations = maxIterations;
         }
 
         /**
@@ -74,6 +80,7 @@ public class PingPongRight {
          */
         void acquire() {
             // TODO fill in here
+        	mSemas[FIRST_SEMA].acquireUninterruptibly();
         }
 
         /**
@@ -88,6 +95,7 @@ public class PingPongRight {
          * iteration.
          */
         // TODO - You fill in here.
+        private String mStringToPrint;
 
         /**
          * Two SimpleSemaphores use to alternate pings and pongs.  You
@@ -95,6 +103,9 @@ public class PingPongRight {
          * two data members.
          */
         // TODO - You fill in here.
+        //private SimpleSemaphore mSemaphoreOne = null;
+        //private SimpleSemaphore mSemaphoreTwo = null;
+        private SimpleSemaphore mSemas[] = new SimpleSemaphore[2];
     }
 
     /**
