@@ -15,22 +15,32 @@ public class SimpleSemaphore {
      * Define a ReentrantLock to protect the critical section.
      */
     // TODO - you fill in here
+	private ReentrantLock mRLock = null;
 
     /**
-     * Define a Condition that waits while the number of permits is 0.
+     * Define a ConditionObject to wait while the number of
+     * permits is 0.
      */
     // TODO - you fill in here
+	private Condition notEmpty = null;
 
     /**
      * Define a count of the number of available permits.
      */
-    // TODO - you fill in here. Make sure that this data member will
+    // TODO - you fill in here.  Make sure that this data member will
     // ensure its values aren't cached by multiple Threads..
+	private volatile int mAvailablePermits = 0;
 
     public SimpleSemaphore(int permits, boolean fair) {
         // TODO - you fill in here to initialize the SimpleSemaphore,
         // making sure to allow both fair and non-fair Semaphore
         // semantics.
+    	mAvailablePermits = permits;
+    	mRLock = new ReentrantLock(fair);
+    	notEmpty = mRLock.newCondition();
+    	//look at this:
+    	//http://baptiste-wicht.com/posts/2010/09/java-concurrency-part-5-monitors-locks-and-conditions.html
+    	//check1
     }
 
     /**
@@ -38,7 +48,16 @@ public class SimpleSemaphore {
      * interrupted.
      */
     public void acquire() throws InterruptedException {
+    	
+    	mRLock.lockInterruptibly();
+    	while(mAvailablePermits == 0){
+    		notEmpty.await();
+    	}
+    	
         // TODO - you fill in here.
+    	
+    	mAvailablePermits -= 1;
+    	mRLock.unlock();
     }
 
     /**
@@ -46,21 +65,37 @@ public class SimpleSemaphore {
      * interrupted.
      */
     public void acquireUninterruptibly() {
+    		
         // TODO - you fill in here.
+    	mRLock.lock();
+    	while(mAvailablePermits == 0){
+    		notEmpty.awaitUninterruptibly();
+    	}
+    	mAvailablePermits -= 1;
+    	mRLock.unlock();
     }
 
     /**
      * Return one permit to the semaphore.
      */
     void release() {
+    	    	    
         // TODO - you fill in here.
+    	mRLock.lock();
+    	mAvailablePermits += 1;
+    	notEmpty.signal();
+    	mRLock.unlock();
+    	
+    	
     }
 
     /**
      * Return the number of permits available.
      */
     public int availablePermits() {
-        // TODO - you fill in here to return the correct result
-    	return 0;
+        // TODO - you fill in here by changing null to the appropriate
+        // return value.
+        //return null;
+    	return mAvailablePermits;
     }
 }
