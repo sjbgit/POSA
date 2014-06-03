@@ -139,8 +139,10 @@ public class PingPongRight {
 
         // Create the ping and pong threads, passing in the string to
         // print and the appropriate SimpleSemaphores.
-        PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pingSema, maxIterations);
-        PlayPingPongThread pong = new PlayPingPongThread("pong", pingSema, pingSema, maxIterations);
+        
+        //IS THIS CORRECT - PASSING IN DIFFERENT?
+        PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pongSema, maxIterations);
+        PlayPingPongThread pong = new PlayPingPongThread("pong", pongSema, pingSema, maxIterations);
 
         // TODO - Initiate the ping and pong threads, which will call
         // the run() hook method.
