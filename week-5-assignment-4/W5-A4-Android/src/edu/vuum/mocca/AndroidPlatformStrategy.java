@@ -57,6 +57,19 @@ public class AndroidPlatformStrategy extends PlatformStrategy
          * and appends the outputString to a TextView. 
          */
         // TODO - You fill in here.
+    	Activity activity = mActivity.get();
+    	if (activity != null) {
+    		activity.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                	mTextViewOutput.append(outputString + '\n');
+                }
+            });
+    	}
+    	
+    
+    	/*
     	mActivity.get().runOnUiThread(new Runnable() {
 
             @Override
@@ -64,6 +77,7 @@ public class AndroidPlatformStrategy extends PlatformStrategy
             	mTextViewOutput.append(outputString + '\n');
             }
         });
+        */
     	
     }
 
