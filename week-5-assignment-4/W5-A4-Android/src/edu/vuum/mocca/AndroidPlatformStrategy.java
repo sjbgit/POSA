@@ -47,6 +47,7 @@ public class AndroidPlatformStrategy extends PlatformStrategy
     {
         /** Reset the CountDownLatch. */
         // TODO - You fill in here.
+    	mLatch = new CountDownLatch(2);
     }
 
     /** Print the outputString to the display. */
@@ -68,29 +69,34 @@ public class AndroidPlatformStrategy extends PlatformStrategy
             });
     	}
     	
-    
-    	/*
-    	mActivity.get().runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-            	mTextViewOutput.append(outputString + '\n');
-            }
-        });
-        */
-    	
     }
 
     /** Indicate that a game thread has finished running. */
     public void done()
     {	
         // TODO - You fill in here.
+    	Activity activity = mActivity.get();
+    	if (activity != null) {
+    		activity.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                	mLatch.countDown();
+                }
+            });
+    	}
     }
 
     /** Barrier that waits for all the game threads to finish. */
     public void awaitDone()
     {
         // TODO - You fill in here.
+    	try {
+			mLatch.await();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     /** Returns the platform name in a String. */
