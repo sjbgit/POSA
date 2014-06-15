@@ -53,9 +53,7 @@ public class PingPongRight {
                                   SimpleSemaphore semaphoreTwo,
                                   int maxIterations) {
             // TODO - You fill in here. 
-        	mStringToPrint = stringToPrint;
-        	//mSemaphoreOne = semaphoreOne;
-        	//mSemaphoreTwo = semaphoreTwo;
+        	mStringToPrint = stringToPrint;        	
         	mSemas[FIRST_SEMA] = semaphoreOne;
             mSemas[SECOND_SEMA] = semaphoreTwo;
         	mMaxLoopIterations = maxIterations;
@@ -79,9 +77,7 @@ public class PingPongRight {
         	}
         	
         	
-            // TODO - You fill in here.
-        	//System.out.println(mStringToPrint);
-        	
+            // TODO - You fill in here.        	        	
         	mLatch.countDown();
         }
 
@@ -113,9 +109,7 @@ public class PingPongRight {
          * can use an array of SimpleSemaphores or just define them as
          * two data members.
          */
-        // TODO - You fill in here.
-        //private SimpleSemaphore mSemaphoreOne = null;
-        //private SimpleSemaphore mSemaphoreTwo = null;
+        // TODO - You fill in here.        
         private SimpleSemaphore mSemas[] = new SimpleSemaphore[2];
     }
 
@@ -144,16 +138,10 @@ public class PingPongRight {
 
         // Create the ping and pong threads, passing in the string to
         // print and the appropriate SimpleSemaphores.
-        
-        //IS THIS CORRECT - PASSING IN DIFFERENT?
-      
+                     
         PlayPingPongThread ping = new PlayPingPongThread(pingString, pingSema, pongSema, maxIterations);
         PlayPingPongThread pong = new PlayPingPongThread(pongString, pongSema, pingSema, maxIterations);
-        //THIS WORKS
-        //PlayPingPongThread ping = new PlayPingPongThread("ping", pingSema, pongSema, maxIterations);
-        //PlayPingPongThread pong = new PlayPingPongThread("pong", pongSema, pingSema, maxIterations);
-      
-
+             
         // TODO - Initiate the ping and pong threads, which will call
         // the run() hook method.
         ping.start();
