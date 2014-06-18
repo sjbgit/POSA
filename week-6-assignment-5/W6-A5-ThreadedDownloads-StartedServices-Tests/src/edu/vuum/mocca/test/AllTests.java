@@ -20,3 +20,7 @@ public class AllTests {
         return suite;
     }
 }
+
+
+//LINKS:
+//https://class.coursera.org/posa-002/forum/thread?thread_id=1661
