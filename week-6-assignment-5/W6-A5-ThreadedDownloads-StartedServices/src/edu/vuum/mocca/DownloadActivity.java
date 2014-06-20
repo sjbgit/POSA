@@ -152,6 +152,8 @@ public class DownloadActivity extends DownloadBase {
             // TODO - You fill in here to start the
             // ThreadPoolDownloadService with the appropriate Intent
             // returned from the makeIntent() factory method.
+        	Intent intent1 = ThreadPoolDownloadService.makeIntent(this, handler, getUrlString());
+        	startService (intent1);
 
             which = "Starting ThreadPoolDownloadService";
             break;
