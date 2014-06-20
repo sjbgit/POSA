@@ -2,6 +2,8 @@ package edu.vuum.mocca;
 
 import java.lang.ref.WeakReference;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -70,6 +72,8 @@ public class DownloadActivity extends DownloadBase {
             // Get an actual reference to the DownloadActivity
             // from the WeakReference.
             final DownloadActivity activity = outerClass.get();
+            
+            String pathname = null;
     		
             // If DownloadActivity hasn't been garbage collected
             // (closed by user), display the sent image.
@@ -78,6 +82,37 @@ public class DownloadActivity extends DownloadBase {
                 // bitmap that's been downloaded and returned to
                 // the DownloadActivity as a pathname who's Bundle
             	// key is defined by DownloadUtils.PATHNAME_KEY
+            	//activity.displayBitmap(pathname)
+            	//Bundle data = msg.getData();
+            	
+            	 Bundle data = msg.getData();
+                 pathname = data.getString(DownloadUtils.PATHNAME_KEY);
+                 activity.displayBitmap(pathname);
+                 
+               /*  
+               if (msg.arg1 != RESULT_OK || pathname == null) {
+            	   Toast.makeText(outerClass.get(),
+                           "Download failed",
+                           Toast.LENGTH_LONG).show();
+               }
+               else {
+            	   activity.displayBitmap(pathname);
+               }
+               */
+
+                // Extract the pathname from the Bundle.
+                //String pathname = data.getString(DownloadUtils.PATHNAME_KEY);
+            	/*
+                try {
+                    // Send pathname to back to the DownloadActivity.
+                	String pathname = data.getString(DownloadUtils.PATHNAME_KEY);
+                } catch (Exception e) {
+                   String x = e.getMessage();
+                   int y = 2;
+                }
+                */
+                int x = 1;
+                //String p = pathname;
             }
     	}
     }
@@ -107,6 +142,8 @@ public class DownloadActivity extends DownloadBase {
             // TODO - You fill in here to start the
             // DownloadIntentService with the appropriate Intent
             // returned from the makeIntent() factory method.
+        	Intent intent = DownloadIntentService.makeIntent(this, handler, getUrlString());
+        	startService (intent);
 
             which = "Starting IntentService";
             break;
