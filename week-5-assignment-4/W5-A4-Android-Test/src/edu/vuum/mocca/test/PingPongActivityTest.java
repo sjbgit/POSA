@@ -22,7 +22,7 @@ public class PingPongActivityTest
 	Solo mSolo;
 
 	/**
-	 * The context of this project, not the target project.
+	 * The context of this project, not the target project. 
 	 */
 	Context mContext;
 

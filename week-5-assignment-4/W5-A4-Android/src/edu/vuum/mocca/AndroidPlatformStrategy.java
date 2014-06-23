@@ -13,7 +13,7 @@ import android.util.Log;
  * @brief Provides methods that define a platform-independent API for
  *        output data to Android UI thread and synchronizing on thread
  *        completion in the ping/pong game.  It plays the role of the
- *        "Concrete Strategy" in the Strategy pattern.
+ *        "Concrete Strategy" in the Strategy pattern. 
  */
 public class AndroidPlatformStrategy extends PlatformStrategy
 {	
