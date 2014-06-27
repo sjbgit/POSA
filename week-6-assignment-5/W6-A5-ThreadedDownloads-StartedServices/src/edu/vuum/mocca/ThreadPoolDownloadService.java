@@ -75,8 +75,7 @@ public class ThreadPoolDownloadService extends Service {
         // DownloadUtils that makes a MessengerIntent.
     	Intent intent = DownloadUtils.makeMessengerIntent(context, ThreadPoolDownloadService.class, handler, uri);
     	return intent;
-    	
-        //return null;
+    	        
     }
 
     /**

@@ -64,10 +64,7 @@ public class DownloadIntentService extends IntentService {
     	// Intent with the appropriate parameters.
     	
     	Intent intent = DownloadUtils.makeMessengerIntent(context, DownloadIntentService.class, handler, uri);
-    	return intent;
-    	//Intent intent = DownloadUtils.makeMessengerIntent(context, handler, uri);
-    	
-        //return null;
+    	return intent;    	
     }
 
     /**
