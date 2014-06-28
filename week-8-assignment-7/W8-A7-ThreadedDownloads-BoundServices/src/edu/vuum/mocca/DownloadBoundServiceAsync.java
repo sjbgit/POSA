@@ -75,6 +75,8 @@ public class DownloadBoundServiceAsync extends Service{
     public static Intent makeIntent(Context context) {
         // TODO - replace the null to create the appropriate Intent
         // and return it to the caller.
-        return null;
+        
+    	return new Intent(context, DownloadBoundServiceAsync.class);
+    	//return null;
     }
 }

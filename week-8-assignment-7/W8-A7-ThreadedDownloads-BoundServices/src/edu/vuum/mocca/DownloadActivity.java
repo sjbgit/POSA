@@ -75,8 +75,9 @@ public class DownloadActivity extends DownloadBase {
                 // to a generated stub method that converts the
                 // service parameter into an interface that can be
                 // used to make RPC calls to the Service.
-
-                mDownloadCall = null;
+            	//mAcronymRequest = AcronymRequest.Stub.asInterface(service);	
+                mDownloadCall = DownloadCall.Stub.asInterface(service);
+                //mDownloadCall.
             }
 
             /**
@@ -145,6 +146,8 @@ public class DownloadActivity extends DownloadBase {
                 // sendPath().  Please use displayBitmap() defined in
                 // DownloadBase.
 
+            	int x = 1;
+            	int y = x;
                 Runnable displayRunnable = null;
             }
         };
@@ -162,6 +165,15 @@ public class DownloadActivity extends DownloadBase {
         case R.id.bound_sync_button:
             // TODO - You fill in here to use mDownloadCall to
             // download the image & then display it.
+        	try {
+				String pathName = mDownloadCall.downloadImage(uri);
+				displayBitmap(pathName);
+				String x = pathName;
+				String y = x;
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             break;
 
         case R.id.bound_async_button:
