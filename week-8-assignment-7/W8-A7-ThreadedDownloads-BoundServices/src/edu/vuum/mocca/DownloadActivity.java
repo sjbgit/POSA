@@ -110,7 +110,7 @@ public class DownloadActivity extends DownloadBase {
                 // service parameter into an interface that can be
                 // used to make RPC calls to the Service.
 
-                mDownloadRequest = null;
+                mDownloadRequest = DownloadRequest.Stub.asInterface(service);
             }
 
             /**
@@ -148,7 +148,22 @@ public class DownloadActivity extends DownloadBase {
 
             	int x = 1;
             	int y = x;
+            	
+            	String pathName = imagePathname;
                 Runnable displayRunnable = null;
+                
+                
+         
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                    	
+                    	int q = 10;
+                    	displayBitmap(imagePathname);
+                    	int r = 11;
+                    	//displayResults(acronymDataList);
+                    }
+                });
+                
             }
         };
      
@@ -168,8 +183,8 @@ public class DownloadActivity extends DownloadBase {
         	try {
 				String pathName = mDownloadCall.downloadImage(uri);
 				displayBitmap(pathName);
-				String x = pathName;
-				String y = x;
+				//String x = pathName;
+				//String y = x;
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -180,6 +195,12 @@ public class DownloadActivity extends DownloadBase {
             // TODO - You fill in here to call downloadImage() on
             // mDownloadRequest, passing in the appropriate Uri and
             // callback.
+        	try {
+				mDownloadRequest.downloadImage(uri, mDownloadCallback);
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             break;
         }
     }
