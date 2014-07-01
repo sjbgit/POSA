@@ -47,7 +47,7 @@ public class AndroidPlatformStrategy extends PlatformStrategy
     {
         /** Reset the CountDownLatch. */
         // TODO - You fill in here.
-    	mLatch = new CountDownLatch(2);
+    	mLatch = new CountDownLatch(2); //This should be a variable
     }
 
     /** Print the outputString to the display. */
